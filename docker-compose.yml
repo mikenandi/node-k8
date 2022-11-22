@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+  node-k8-api-service:
+    image: mikenandi/node-k8:1.0.1
+    build: .
+    ports:
+      - 3000:300
+
+    volumes:
+      - ./:/app
+      - /app/node_modules
+
+    environment:
+      - PORT=3000
+
+  mariaDb:
+  

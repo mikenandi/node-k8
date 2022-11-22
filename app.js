@@ -1,4 +1,5 @@
 const express = require("express");
+const fetch = require("node-fetch");
 const os = require("os");
 
 const app = express();
@@ -9,6 +10,14 @@ app.get("/", (req, res, next) => {
 		status: "Api working",
 		message: `Hello from ${os.hostname}`,
 	});
+});
+
+app.get("/nginx", async (req, res, next) => {
+	let url = "http://nginx";
+	let response = await fetch(url);
+	let body = await response.text();
+
+	return res.send(body);
 });
 
 const PORT = 3000;
